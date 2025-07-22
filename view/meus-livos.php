@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-light">
-    <!-- Navigation -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.html">
