@@ -19,13 +19,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS personalizado -->
-    <link rel="stylesheet" href="templates/assets/css/style.css">
+    <link rel="stylesheet" href="../templates/assets/css/style.css">
 </head>
 <body class="bg-light">
     <!-- Navegação -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
+            <a class="navbar-brand fw-bold" href="index.php">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -34,12 +34,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="login.html">
+                        <a class="nav-link active" href="login.php">
                             <i class="fas fa-sign-in-alt me-1"></i>Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-usuario.html">
+                        <a class="nav-link" href="cadastro-usuario.php">
                             <i class="fas fa-user-plus me-1"></i>Cadastrar-se
                         </a>
                     </li>
@@ -118,7 +118,7 @@
                     <div class="text-center mt-4">
                         <p class="text-muted">
                             Não tem uma conta? 
-                            <a href="cadastro-usuario.html" class="text-primary fw-bold text-decoration-none">
+                            <a href="cadastro-usuario.php" class="text-primary fw-bold text-decoration-none">
                                 Cadastre-se aqui
                             </a>
                         </p>
@@ -211,7 +211,7 @@
                     BookManager.mostrarAlerta('success', 'Login realizado com sucesso! Redirecionando...');
                     
                     setTimeout(() => {
-                        window.location.href = 'dashboard.html';
+                        window.location.href = 'dashboard.php';
                     }, 1500);
                     
                 } catch (error) {

@@ -15,13 +15,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="templates/assets/css/style.css">
+    <link rel="stylesheet" href="../templates/assets/css/style.css">
 </head>
 <body class="bg-light">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.html">
+            <a class="navbar-brand fw-bold" href="dashboard.php">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

@@ -16,13 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="templates/assets/css/style.css">
+    <link rel="stylesheet" href="../templates/assets/css/style.css">
 </head>
 <body class="bg-light">
-
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.html">
+            <a class="navbar-brand fw-bold" href="dashboard.php">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,17 +31,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="dashboard.html">
+                        <a class="nav-link active" href="dashboard.php">
                             <i class="fas fa-home me-1"></i>Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="meus-livros.html">
+                        <a class="nav-link" href="meus-livros.php">
                             <i class="fas fa-books me-1"></i>Livros
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-livro.html">
+                        <a class="nav-link" href="cadastro-livro.php">
                             <i class="fas fa-plus me-1"></i>Cadastrar Livro
                         </a>
                     </li>
@@ -136,7 +136,7 @@
                                 <i class="fas fa-clock me-2 text-primary"></i>
                                 Livros Recentes
                             </h5>
-                            <a href="meus-livros.html" class="btn btn-sm btn-outline-primary">
+                            <a href="meus-livros.php" class="btn btn-sm btn-outline-primary">
                                 Ver Todos
                             </a>
                         </div>
@@ -160,11 +160,11 @@
                     </div>
                     <div class="card-body">
                         <div class="d-grid gap-3">
-                            <a href="cadastro-livro.html" class="btn btn-primary">
+                            <a href="cadastro-livro.php" class="btn btn-primary">
                                 <i class="fas fa-plus me-2"></i>
                                 Adicionar Novo Livro
                             </a>
-                            <a href="meus-livros.html" class="btn btn-outline-primary">
+                            <a href="meus-livros.php" class="btn btn-outline-primary">
                                 <i class="fas fa-search me-2"></i>
                                 Buscar Livros
                             </a>
@@ -220,9 +220,9 @@
                 <div class="footer-section">
                     <h6 class="fw-bold mb-3">Links Rápidos</h6>
                     <ul class="footer-links">
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="meus-livros.html">Biblioteca</a></li>
-                        <li><a href="cadastro-livro.html">Cadastrar Livro</a></li>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="meus-livros.php">Biblioteca</a></li>
+                        <li><a href="cadastro-livro.php">Cadastrar Livro</a></li>
                         <li><a href="#buscar">Buscar Livros</a></li>
                         <li><a href="#relatorios">Relatórios</a></li>
                     </ul>
@@ -357,7 +357,7 @@
                     <div class="text-center py-4">
                         <i class="fas fa-book text-muted" style="font-size: 3rem;"></i>
                         <p class="text-muted mt-3">Nenhum livro cadastrado ainda.</p>
-                        <a href="cadastro-livro.html" class="btn btn-primary">
+                        <a href="cadastro-livro.php" class="btn btn-primary">
                             <i class="fas fa-plus me-2"></i>Adicionar Primeiro Livro
                         </a>
                     </div>
@@ -376,7 +376,7 @@
                         <span class="badge badge-${livro.status.toLowerCase().replace('í', 'i').replace('ã', 'a')}">${livro.status}</span>
                     </div>
                     <div>
-                        <a href="detalhes-livro.html?id=${livro.id}" class="btn btn-sm btn-outline-primary">
+                        <a href="detalhes-livro.php?id=${livro.id}" class="btn btn-sm btn-outline-primary">
                             <i class="fas fa-eye"></i>
                         </a>
                     </div>

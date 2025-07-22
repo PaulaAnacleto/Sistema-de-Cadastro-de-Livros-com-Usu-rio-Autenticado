@@ -263,7 +263,7 @@ function verificarAutenticacao() {
 
 function redirecionarSeNaoAutenticado() {
     if (!verificarAutenticacao()) {
-        window.location.href = 'login.html';
+        window.location.href = 'login.php';
     }
 }
 
@@ -271,7 +271,7 @@ function logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('usuario');
     usuarioLogado = null;
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
 }
 
 // ===== INICIALIZAÇÃO =====

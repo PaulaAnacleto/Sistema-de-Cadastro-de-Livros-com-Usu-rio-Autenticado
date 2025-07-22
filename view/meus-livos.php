@@ -15,13 +15,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="templates/assets/css/style.css">
 </head>
 <body class="bg-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.html">
+            <a class="navbar-brand fw-bold" href="dashboard.php">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,17 +30,17 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="dashboard.php">
                             <i class="fas fa-home me-1"></i>Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="meus-livros.html">
+                        <a class="nav-link active" href="meus-livros.php">
                             <i class="fas fa-books me-1"></i>Livros
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-livro.html">
+                        <a class="nav-link" href="cadastro-livro.php">
                             <i class="fas fa-plus me-1"></i>Cadastrar Livro
                         </a>
                     </li>
@@ -72,7 +72,7 @@
                 </h2>
                 <p class="text-muted mb-0">Gerencie todos os seus livros em um só lugar</p>
             </div>
-            <a href="cadastro-livro.html" class="btn btn-primary">
+            <a href="cadastro-livro.php" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Adicionar Livro
             </a>
         </div>
@@ -184,7 +184,7 @@
             <i class="fas fa-book text-muted" style="font-size: 4rem;"></i>
             <h3 class="mt-3">Nenhum livro encontrado</h3>
             <p class="text-muted">Tente ajustar os filtros ou adicione novos livros à biblioteca.</p>
-            <a href="cadastro-livro.html" class="btn btn-primary">
+            <a href="cadastro-livro.php" class="btn btn-primary">
                 <i class="fas fa-plus me-2"></i>Adicionar Primeiro Livro
             </a>
         </div>
@@ -263,9 +263,9 @@
                 <div class="footer-section">
                     <h6 class="fw-bold mb-3">Links Rápidos</h6>
                     <ul class="footer-links">
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="meus-livros.html">Biblioteca</a></li>
-                        <li><a href="cadastro-livro.html">Cadastrar Livro</a></li>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="meus-livros.php">Biblioteca</a></li>
+                        <li><a href="cadastro-livro.php">Cadastrar Livro</a></li>
                         <li><a href="#buscar">Buscar Livros</a></li>
                         <li><a href="#relatorios">Relatórios</a></li>
                     </ul>
@@ -519,10 +519,10 @@
                                 </div>
                                 <div class="card-footer bg-transparent border-0 pt-0">
                                     <div class="d-flex gap-2">
-                                        <a href="detalhes-livro.html?id=${livro.id}" class="btn btn-sm btn-outline-primary flex-fill">
+                                        <a href="detalhes-livro.php?id=${livro.id}" class="btn btn-sm btn-outline-primary flex-fill">
                                             <i class="fas fa-eye me-1"></i>Ver
                                         </a>
-                                        <a href="editar-livro.html?id=${livro.id}" class="btn btn-sm btn-outline-success">
+                                        <a href="editar-livro.php?id=${livro.id}" class="btn btn-sm btn-outline-success">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <button class="btn btn-sm btn-outline-danger" onclick="confirmarExclusao(${livro.id}, '${livro.titulo}')">
@@ -565,10 +565,10 @@
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a href="detalhes-livro.html?id=${livro.id}" class="btn btn-outline-primary" title="Ver detalhes">
+                                            <a href="detalhes-livro.php?id=${livro.id}" class="btn btn-outline-primary" title="Ver detalhes">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="editar-livro.html?id=${livro.id}" class="btn btn-outline-success" title="Editar">
+                                            <a href="editar-livro.php?id=${livro.id}" class="btn btn-outline-success" title="Editar">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <button class="btn btn-outline-danger" onclick="confirmarExclusao(${livro.id}, '${livro.titulo}')" title="Excluir">
@@ -593,10 +593,10 @@
                 return;
             }
             
-            let html = '';
+            let php = '';
             
             // Botão anterior
-            html += `
+            php += `
                 <li class="page-item ${paginaAtual === 1 ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="irParaPagina(${paginaAtual - 1})">
                         <i class="fas fa-chevron-left"></i>
@@ -606,7 +606,7 @@
             
             // Páginas
             for (let i = 1; i <= totalPaginas; i++) {
-                html += `
+                php += `
                     <li class="page-item ${i === paginaAtual ? 'active' : ''}">
                         <a class="page-link" href="#" onclick="irParaPagina(${i})">${i}</a>
                     </li>
@@ -614,7 +614,7 @@
             }
             
             // Botão próximo
-            html += `
+            php += `
                 <li class="page-item ${paginaAtual === totalPaginas ? 'disabled' : ''}">
                     <a class="page-link" href="#" onclick="irParaPagina(${paginaAtual + 1})">
                         <i class="fas fa-chevron-right"></i>
@@ -622,7 +622,7 @@
                 </li>
             `;
             
-            paginacao.innerHTML = html;
+            paginacao.innerHTML = php;
         }
 
         function irParaPagina(pagina) {
