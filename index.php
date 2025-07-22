@@ -21,7 +21,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
+            <a class="navbar-brand fw-bold" href="index.php">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,12 +30,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">
+                        <a class="nav-link" href="login.php">
                             <i class="fas fa-sign-in-alt me-1"></i>Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-usuario.html">
+                        <a class="nav-link" href="cadastro-usuario.php">
                             <i class="fas fa-user-plus me-1"></i>Cadastrar-se
                         </a>
                     </li>
@@ -57,10 +57,10 @@
                             O BookManager é a solução perfeita para catalogar, organizar e gerenciar todos os seus livros em um só lugar. Interface moderna, intuitiva e totalmente responsiva.
                         </p>
                         <div class="d-flex flex-column flex-sm-row gap-3">
-                            <a href="cadastro-usuario.html" class="btn btn-success btn-lg px-4">
+                            <a href="cadastro-usuario.php" class="btn btn-success btn-lg px-4">
                                 <i class="fas fa-rocket me-2"></i>Começar Agora
                             </a>
-                            <a href="login.html" class="btn btn-outline-light btn-lg px-4">
+                            <a href="login.php" class="btn btn-outline-light btn-lg px-4">
                                 <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
                             </a>
                         </div>
@@ -158,9 +158,9 @@
                 <div class="footer-section">
                     <h6 class="fw-bold mb-3">Links Rápidos</h6>
                     <ul class="footer-links">
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="meus-livros.html">Biblioteca</a></li>
-                        <li><a href="cadastro-livro.html">Cadastrar Livro</a></li>
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="meus-livros.php">Biblioteca</a></li>
+                        <li><a href="cadastro-livro.php">Cadastrar Livro</a></li>
                         <li><a href="#buscar">Buscar Livros</a></li>
                         <li><a href="#relatorios">Relatórios</a></li>
                     </ul>
