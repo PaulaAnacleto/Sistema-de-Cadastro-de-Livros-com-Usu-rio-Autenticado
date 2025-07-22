@@ -36,7 +36,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="meus-livros.php">
-                            <i class="fas fa-books me-1"></i>Meus Livros
+                            <i class="fas fa-books me-1"></i>Livros
                         </a>
                     </li>
                     <li class="nav-item">
@@ -52,8 +52,6 @@
                             <span id="nomeUsuario">Usuário</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Perfil</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configurações</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" onclick="BookManager.logout()"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
                         </ul>
@@ -69,7 +67,7 @@
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="dashboard.php" class="text-decoration-none">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="meus-livros.php" class="text-decoration-none">Meus Livros</a></li>
+                <li class="breadcrumb-item"><a href="meus-livros.php" class="text-decoration-none">Livros</a></li>
                 <li class="breadcrumb-item active">Detalhes do Livro</li>
             </ol>
         </nav>
