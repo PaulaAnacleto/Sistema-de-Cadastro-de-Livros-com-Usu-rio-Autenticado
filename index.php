@@ -30,12 +30,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">
+                        <a class="nav-link" href="View/login.php">
                             <i class="fas fa-sign-in-alt me-1"></i>Login
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-usuario.php">
+                        <a class="nav-link" href="View/cadastro-usuario.php">
                             <i class="fas fa-user-plus me-1"></i>Cadastrar-se
                         </a>
                     </li>
@@ -57,10 +57,10 @@
                             O BookManager é a solução perfeita para catalogar, organizar e gerenciar todos os seus livros em um só lugar. Interface moderna, intuitiva e totalmente responsiva.
                         </p>
                         <div class="d-flex flex-column flex-sm-row gap-3">
-                            <a href="cadastro-usuario.php" class="btn btn-success btn-lg px-4">
+                            <a href="View/cadastro-usuario.php" class="btn btn-success btn-lg px-4">
                                 <i class="fas fa-rocket me-2"></i>Começar Agora
                             </a>
-                            <a href="login.php" class="btn btn-outline-light btn-lg px-4">
+                            <a href="View/login.php" class="btn btn-outline-light btn-lg px-4">
                                 <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
                             </a>
                         </div>
