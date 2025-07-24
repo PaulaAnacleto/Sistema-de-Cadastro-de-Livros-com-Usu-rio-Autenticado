@@ -5,16 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário - BookManager</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../templates/assets/css/style.css">
 </head>
 <body class="bg-light">
@@ -44,7 +37,6 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
@@ -57,10 +49,8 @@
                         <p class="text-muted">Junte-se ao BookManager e organize sua biblioteca</p>
                     </div>
 
-                    <!-- Alert Container -->
                     <div id="alertContainer"></div>
 
-                    <!-- Cadastro Form -->
                     <form id="cadastroForm" novalidate>
                         <div class="mb-3">
                             <label for="nome" class="form-label">
@@ -138,10 +128,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JS -->
     <script src="../js/main.js"></script>
     
     <script>
@@ -153,7 +141,6 @@
             const senhaInput = document.getElementById('senha');
             const confirmarSenhaInput = document.getElementById('confirmarSenha');
 
-            // Toggle password visibility
             toggleSenha.addEventListener('click', function() {
                 const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 senhaInput.setAttribute('type', type);
@@ -168,7 +155,6 @@
                 this.querySelector('i').classList.toggle('fa-eye-slash');
             });
 
-            // Form submission
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 

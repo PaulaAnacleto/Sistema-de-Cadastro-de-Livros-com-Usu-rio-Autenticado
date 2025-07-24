@@ -5,23 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Livro - BookManager</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../templates/assets/css/style.css">
+    <link rel="stylesheet" href="templates/assets/css/style.css">
 </head>
 <body class="bg-light">
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.php">
+            <a class="navbar-brand fw-bold" href="index.php?action=dashboard">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -30,30 +22,30 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">
-                            <i class="fas fa-home me-1"></i>Dashboard
+                        <a class="nav-link" href="index.php?action=dashboard">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="meus-livros.php">
-                            <i class="fas fa-books me-1"></i>Livros
+                        <a class="nav-link" href="index.php?action=my_books">
+                            <i class="fas fa-book me-1"></i>Meus Livros
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="cadastro-livro.php">
-                            <i class="fas fa-plus me-1"></i>Cadastrar Livro
+                        <a class="nav-link active" href="index.php?action=add_book">
+                            <i class="fas fa-plus me-1"></i>Adicionar Livro
                         </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle me-1"></i>
-                            <span id="nomeUsuario">Usuário</span>
+                            <i class="fas fa-user me-1"></i>Usuário
                         </a>
                         <ul class="dropdown-menu">
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="BookManager.logout()"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                            <li><a class="dropdown-item" href="index.php?action=logout">
+                                <i class="fas fa-sign-out-alt me-2"></i>Sair
+                            </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -61,251 +53,261 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container py-4">
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard.php" class="text-decoration-none">Dashboard</a></li>
-                <li class="breadcrumb-item active">Cadastrar Livro</li>
-            </ol>
-        </nav>
-
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="form-container fade-in">
-                    <div class="text-center mb-4">
-                        <div class="mb-3">
-                            <i class="fas fa-plus-circle text-primary" style="font-size: 3rem;"></i>
-                        </div>
-                        <h2 class="fw-bold text-primary">Adicionar Novo Livro</h2>
-                        <p class="text-muted">Preencha as informações do livro para adicioná-lo à sua biblioteca</p>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h4 class="card-title mb-0">
+                            <i class="fas fa-plus me-2 text-primary"></i>Cadastrar Novo Livro
+                        </h4>
                     </div>
-
-                    <!-- Alert Container -->
-                    <div id="alertContainer"></div>
-
-                    <!-- Cadastro Form -->
-                    <form id="cadastroLivroForm" novalidate>
-                        <div class="row g-3">
-                            <div class="col-md-8">
-                                <label for="titulo" class="form-label">
-                                    <i class="fas fa-book me-2"></i>Título *
-                                </label>
-                                <input type="text" class="form-control" id="titulo" name="titulo" required 
-                                       placeholder="Digite o título do livro">
+                    <div class="card-body">
+                        <?php if (isset($error) && $error): ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <?= htmlspecialchars($error) ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
-                            <div class="col-md-4">
-                                <label for="ano" class="form-label">
-                                    <i class="fas fa-calendar me-2"></i>Ano de Publicação *
-                                </label>
-                                <input type="number" class="form-control" id="ano" name="ano" required 
-                                       placeholder="Ex: 2023" min="1000" max="2024">
-                            </div>
-                        </div>
+                        <?php endif; ?>
 
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-6">
-                                <label for="autor" class="form-label">
-                                    <i class="fas fa-user me-2"></i>Autor *
-                                </label>
-                                <input type="text" class="form-control" id="autor" name="autor" required 
-                                       placeholder="Digite o nome do autor">
+                        <?php if (isset($success) && $success): ?>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <?= htmlspecialchars($success) ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             </div>
-                            <div class="col-md-6">
-                                <label for="editora" class="form-label">
-                                    <i class="fas fa-building me-2"></i>Editora *
-                                </label>
-                                <input type="text" class="form-control" id="editora" name="editora" required 
-                                       placeholder="Digite o nome da editora">
-                            </div>
-                        </div>
+                        <?php endif; ?>
 
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-6">
+                        <form method="POST" action="index.php?action=do_add_book" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="title" class="form-label">
+                                        <i class="fas fa-book me-2"></i>Título *
+                                    </label>
+                                    <input type="text" class="form-control" id="title" name="title" required 
+                                           placeholder="Digite o título do livro" value="<?= htmlspecialchars($_POST['title'] ?? '') ?>">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="author" class="form-label">
+                                        <i class="fas fa-user-edit me-2"></i>Autor *
+                                    </label>
+                                    <input type="text" class="form-control" id="author" name="author" required 
+                                           placeholder="Digite o nome do autor" value="<?= htmlspecialchars($_POST['author'] ?? '') ?>">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="genre" class="form-label">
+                                        <i class="fas fa-tags me-2"></i>Gênero *
+                                    </label>
+                                    <input type="text" class="form-control" id="genre" name="genre" required 
+                                           placeholder="Digite o gênero do livro" value="<?= htmlspecialchars($_POST['genre'] ?? '') ?>">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="status" class="form-label">
+                                        <i class="fas fa-bookmark me-2"></i>Status
+                                    </label>
+                                    <select class="form-select" id="status" name="status">
+                                        <?php foreach ($valid_statuses as $status_option): ?>
+                                            <option value="<?= htmlspecialchars($status_option) ?>" 
+                                                    <?= (($_POST['status'] ?? 'Desejo Ler') === $status_option) ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($status_option) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="publisher" class="form-label">
+                                        <i class="fas fa-building me-2"></i>Editora
+                                    </label>
+                                    <input type="text" class="form-control" id="publisher" name="publisher" 
+                                           placeholder="Digite a editora" value="<?= htmlspecialchars($_POST['publisher'] ?? '') ?>">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="year_public" class="form-label">
+                                        <i class="fas fa-calendar-alt me-2"></i>Ano de Publicação
+                                    </label>
+                                    <input type="number" class="form-control" id="year_public" name="year_public" 
+                                           placeholder="Ex: 2023" min="1000" max="<?= date('Y') ?>" 
+                                           value="<?= htmlspecialchars($_POST['year_public'] ?? '') ?>">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="isbn" class="form-label">
                                     <i class="fas fa-barcode me-2"></i>ISBN
                                 </label>
                                 <input type="text" class="form-control" id="isbn" name="isbn" 
-                                       placeholder="Ex: 978-85-359-0277-5">
-                                <div class="form-text">
-                                    <small class="text-muted">
-                                        <i class="fas fa-info-circle me-1"></i>
-                                        Formato: 10 ou 13 dígitos (com ou sem hífens)
-                                    </small>
-                                </div>
+                                       placeholder="Digite o ISBN do livro" value="<?= htmlspecialchars($_POST['isbn'] ?? '') ?>">
                             </div>
-                            <div class="col-md-6">
-                                <label for="genero" class="form-label">
-                                    <i class="fas fa-tags me-2"></i>Gênero/Categoria *
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">
+                                    <i class="fas fa-align-left me-2"></i>Descrição
                                 </label>
-                                <select class="form-select" id="genero" name="genero" required>
-                                    <option value="">Selecione um gênero</option>
-                                    <option value="Literatura Brasileira">Literatura Brasileira</option>
-                                    <option value="Literatura Estrangeira">Literature Estrangeira</option>
-                                    <option value="Ficção Científica">Ficção Científica</option>
-                                    <option value="Fantasy">Fantasy</option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Mistério/Suspense">Mistério/Suspense</option>
-                                    <option value="Biografia">Biografia</option>
-                                    <option value="História">História</option>
-                                    <option value="Filosofia">Filosofia</option>
-                                    <option value="Autoajuda">Autoajuda</option>
-                                    <option value="Negócios">Negócios</option>
-                                    <option value="Tecnologia">Tecnologia</option>
-                                    <option value="Literatura Infantil">Literatura Infantil</option>
-                                    <option value="Literatura Juvenil">Literatura Juvenil</option>
-                                    <option value="Poesia">Poesia</option>
-                                    <option value="Teatro">Teatro</option>
-                                    <option value="Ensaio">Ensaio</option>
-                                    <option value="Crônica">Crônica</option>
-                                    <option value="Outros">Outros</option>
-                                </select>
+                                <textarea class="form-control" id="description" name="description" rows="4" 
+                                          placeholder="Digite uma descrição do livro (opcional)"><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
                             </div>
-                        </div>
 
-                        <div class="mt-3">
-                            <label for="status" class="form-label">
-                                <i class="fas fa-info-circle me-2"></i>Status *
-                            </label>
-                            <select class="form-select" id="status" name="status" required>
-                                <option value="">Selecione o status</option>
-                                <option value="Disponível" selected>Disponível</option>
-
-                                <option value="Emprestado">Emprestado</option>
-                            </select>
-                        </div>
-
-                        <div class="mt-3">
-                            <label for="descricao" class="form-label">
-                                <i class="fas fa-align-left me-2"></i>Descrição
-                            </label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4" 
-                                      placeholder="Digite uma breve descrição ou sinopse do livro (opcional)"></textarea>
-                            <div class="form-text">
-                                <small class="text-muted">
-                                    <span id="contadorCaracteres">0</span>/500 caracteres
-                                </small>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Cadastrar Livro
+                                </button>
+                                <a href="index.php?action=my_books" class="btn btn-outline-secondary">
+                                    <i class="fas fa-times me-2"></i>Cancelar
+                                </a>
                             </div>
-                        </div>
-
-                        <div class="mt-4 d-flex gap-3">
-                            <button type="submit" class="btn btn-primary flex-fill" id="btnCadastrar">
-                                <i class="fas fa-save me-2"></i>Salvar Livro
-                            </button>
-                            <button type="button" class="btn btn-outline-secondary" onclick="limparFormulario()">
-                                <i class="fas fa-eraser me-2"></i>Limpar
-                            </button>
-                            <a href="meus-livros.php" class="btn btn-outline-primary">
-                                <i class="fas fa-arrow-left me-2"></i>Voltar
-                            </a>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS -->
+    <footer class="bg-dark text-light py-5 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Coluna 1: Sobre -->
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-section">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-book-open me-2 text-primary"></i>BookManager
+                    </h5>
+                    <p class="text-muted mb-3">
+                        Sistema completo de gerenciamento de biblioteca para empréstimo de livros. 
+                        Organize, controle e gerencie sua biblioteca de forma moderna e eficiente.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/bookmanager" target="_blank" class="social-link me-3" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/bookmanager" target="_blank" class="social-link me-3" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/bookmanager" target="_blank" class="social-link me-3" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/bookmanager" target="_blank" class="social-link me-3" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://youtube.com/bookmanager" target="_blank" class="social-link me-3" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://github.com/bookmanager" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Links Rápidos -->
+            <div class="col-lg-2 col-md-6">
+                <div class="footer-section">
+                    <h6 class="fw-bold mb-3">Links Rápidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.php">Dashboard</a></li>
+                        <li><a href="meus-livros.php">Biblioteca</a></li>
+                        <li><a href="cadastro-livro.php">Cadastrar Livro</a></li>
+                        <li><a href="#buscar">Buscar Livros</a></li>
+                        <li><a href="#relatorios">Relatórios</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Coluna 3: Recursos -->
+            <div class="col-lg-2 col-md-6">
+                <div class="footer-section">
+                    <h6 class="fw-bold mb-3">Recursos</h6>
+                    <ul class="footer-links">
+                        <li><a href="#tutorial">Tutorial</a></li>
+                        <li><a href="#documentacao">Documentação</a></li>
+                        <li><a href="#api">API</a></li>
+                        <li><a href="#integracao">Integrações</a></li>
+                        <li><a href="#mobile">App Mobile</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Coluna 4: Suporte -->
+            <div class="col-lg-2 col-md-6">
+                <div class="footer-section">
+                    <h6 class="fw-bold mb-3">Suporte</h6>
+                    <ul class="footer-links">
+                        <li><a href="#ajuda">Central de Ajuda</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#status">Status do Sistema</a></li>
+                        <li><a href="#feedback">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Coluna 5: Contato -->
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-section">
+                    <h6 class="fw-bold mb-3">Contato</h6>
+                    <div class="contact-info">
+                        <div class="contact-item mb-2">
+                            <i class="fas fa-envelope me-2 text-primary"></i>
+                            <a href="mailto:contato@bookmanager.com">contato@bookmanager.com</a>
+                        </div>
+                        <div class="contact-item mb-2">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            <a href="tel:+5511999999999">(11) 99999-9999</a>
+                        </div>
+                        <div class="contact-item mb-3">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            <span>São Paulo, SP - Brasil</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="newsletter">
+                        <h6 class="fw-bold mb-2">Newsletter</h6>
+                        <p class="text-muted small mb-2">Receba novidades e dicas</p>
+                        <div class="input-group input-group-sm">
+                            <input type="email" class="form-control" placeholder="Seu e-mail">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Linha divisória -->
+        <hr class="my-4 border-secondary">
+
+        <!-- Rodapé inferior -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="copyright">
+                    <p class="mb-0 text-muted">
+                        <i class="far fa-copyright me-1"></i>
+                        <span id="currentYear">2024</span> BookManager. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="footer-bottom-links text-md-end">
+                    <a href="#privacidade" class="text-muted me-3">Política de Privacidade</a>
+                    <a href="#termos" class="text-muted me-3">Termos de Uso</a>
+                    <a href="#cookies" class="text-muted">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="../js/main.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar autenticação
-            BookManager.redirecionarSeNaoAutenticado();
-            
-            // Carregar dados do usuário
-            const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (usuario) {
-                document.getElementById('nomeUsuario').textContent = usuario.nome;
-            }
-            
-            // Configurar contador de caracteres
-            const descricaoTextarea = document.getElementById('descricao');
-            const contadorCaracteres = document.getElementById('contadorCaracteres');
-            
-            descricaoTextarea.addEventListener('input', function() {
-                const caracteres = this.value.length;
-                contadorCaracteres.textContent = caracteres;
-                
-                if (caracteres > 500) {
-                    this.value = this.value.substring(0, 500);
-                    contadorCaracteres.textContent = 500;
-                }
-                
-                // Mudar cor baseado no limite
-                if (caracteres > 450) {
-                    contadorCaracteres.className = 'text-danger';
-                } else if (caracteres > 400) {
-                    contadorCaracteres.className = 'text-warning';
-                } else {
-                    contadorCaracteres.className = 'text-muted';
-                }
-            });
-            
-            // Form submission
-            const form = document.getElementById('cadastroLivroForm');
-            const btnCadastrar = document.getElementById('btnCadastrar');
-            
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                if (!BookManager.validarFormulario(form)) {
-                    BookManager.mostrarAlerta('danger', 'Por favor, corrija os erros no formulário antes de continuar.');
-                    return;
-                }
-
-                const formData = new FormData(form);
-                const dados = {
-                    titulo: formData.get('titulo'),
-                    autor: formData.get('autor'),
-                    isbn: formData.get('isbn') || 'N/A',
-                    editora: formData.get('editora'),
-                    ano: parseInt(formData.get('ano')),
-                    genero: formData.get('genero'),
-                    descricao: formData.get('descricao') || 'Sem descrição',
-                    status: formData.get('status')
-                };
-
-                const textoOriginal = btnCadastrar.innerHTML;
-                BookManager.mostrarLoading(btnCadastrar);
-
-                try {
-                    const resposta = await BookManager.simularRequisicaoHTTP('POST', '/api/livros', dados);
-                    
-                    BookManager.mostrarAlerta('success', 'Livro cadastrado com sucesso! Redirecionando...');
-                    
-                    setTimeout(() => {
-                        window.location.href = 'meus-livros.php';
-                    }, 2000);
-                    
-                } catch (error) {
-                    BookManager.mostrarAlerta('danger', error.erro || 'Erro ao cadastrar livro. Tente novamente.');
-                    BookManager.esconderLoading(btnCadastrar, textoOriginal);
-                }
-            });
-        });
-
-        function limparFormulario() {
-            if (confirm('Tem certeza que deseja limpar todos os campos?')) {
-                document.getElementById('cadastroLivroForm').reset();
-                document.getElementById('contadorCaracteres').textContent = '0';
-                document.getElementById('contadorCaracteres').className = 'text-muted';
-                
-                // Remove validação visual
-                const campos = document.querySelectorAll('.form-control, .form-select');
-                campos.forEach(campo => {
-                    campo.classList.remove('is-valid', 'is-invalid');
-                });
-                
-                // Remove mensagens de feedback
-                const feedbacks = document.querySelectorAll('.invalid-feedback, .valid-feedback');
-                feedbacks.forEach(feedback => feedback.remove());
-            }
-        }
-    </script>
 </body>
 </html>
-

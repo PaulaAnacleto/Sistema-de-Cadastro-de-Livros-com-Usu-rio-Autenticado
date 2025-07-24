@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,23 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - BookManager</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../templates/assets/css/style.css">
+    <link rel="stylesheet" href="templates/assets/css/style.css">
 </head>
 <body class="bg-light">
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="dashboard.php">
+            <a class="navbar-brand fw-bold" href="index.php?action=dashboard">
                 <i class="fas fa-book-open me-2"></i>BookManager
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,30 +22,30 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="dashboard.php">
-                            <i class="fas fa-home me-1"></i>Dashboard
+                        <a class="nav-link active" href="index.php?action=dashboard">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="meus-livros.php">
-                            <i class="fas fa-books me-1"></i>Livros
+                        <a class="nav-link" href="index.php?action=my_books">
+                            <i class="fas fa-book me-1"></i>Meus Livros
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cadastro-livro.php">
-                            <i class="fas fa-plus me-1"></i>Cadastrar Livro
+                        <a class="nav-link" href="index.php?action=add_book">
+                            <i class="fas fa-plus me-1"></i>Adicionar Livro
                         </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-circle me-1"></i>
-                            <span id="nomeUsuario">Usuário</span>
+                            <i class="fas fa-user me-1"></i><?= htmlspecialchars($user_name ?? 'Usuário') ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="BookManager.logout()"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                            <li><a class="dropdown-item" href="index.php?action=logout">
+                                <i class="fas fa-sign-out-alt me-2"></i>Sair
+                            </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,124 +53,169 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container py-4">
-        <!-- Welcome Section -->
-        <div class="row mb-4 mt-4">
-            <div class="col-12">
-                <div class="card border-0 bg-gradient-primary text-white">
-                    <div class="card-body p-4">
-                        <div class="row align-items-center">
-                            <div class="col-md-8">
-                                <h2 class="fw-bold mb-2">
-                                    <i class="fas fa-sun me-2"></i>
-                                    Bem-vindo de volta, <span id="nomeUsuarioBemVindo">Usuário</span>!
-                                </h2>
-                                <p class="mb-0 opacity-75">
-                                Gerencie sua biblioteca e descubra novos mundos através da leitura.                             </p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <i class="fas fa-book-reader" style="font-size: 4rem; opacity: 0.3;"></i>
-                            </div>
+        <?php if (isset($error) && $error): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <?= htmlspecialchars($error) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($success) && $success): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                <?= htmlspecialchars($success) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="h3 text-primary fw-bold">
+                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                </h1>
+                <p class="text-muted">Bem-vindo de volta, <?= htmlspecialchars($user_name ?? 'Usuário') ?>!</p>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="text-primary mb-2">
+                            <i class="fas fa-book fa-2x"></i>
                         </div>
+                        <h4 class="card-title text-primary"><?= $stats['total_books'] ?? 0 ?></h4>
+                        <p class="card-text text-muted">Total de Livros</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="text-success mb-2">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                        <h4 class="card-title text-success"><?= $stats['books_read'] ?? 0 ?></h4>
+                        <p class="card-text text-muted">Livros Lidos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="text-warning mb-2">
+                            <i class="fas fa-book-reader fa-2x"></i>
+                        </div>
+                        <h4 class="card-title text-warning"><?= $stats['books_reading'] ?? 0 ?></h4>
+                        <p class="card-text text-muted">Lendo Atualmente</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="text-info mb-2">
+                            <i class="fas fa-heart fa-2x"></i>
+                        </div>
+                        <h4 class="card-title text-info"><?= $stats['books_want_to_read'] ?? 0 ?></h4>
+                        <p class="card-text text-muted">Desejo Ler</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Statistics Cards -->
-        <div class="row g-4 mb-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 h-100 hover-scale">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <i class="fas fa-books text-primary" style="font-size: 2.5rem;"></i>
-                        </div>
-                        <h3 class="fw-bold text-primary mb-1" id="totalLivros">0</h3>
-                        <p class="text-muted mb-0">Total de Livros</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 h-100 hover-scale">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <i class="fas fa-handshake text-warning" style="font-size: 2.5rem;"></i>
-                        </div>
-                        <h3 class="fw-bold text-warning mb-1" id="livrosEmprestados">0</h3>
-                        <p class="text-muted mb-0">Emprestados</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card border-0 h-100 hover-scale">
-                    <div class="card-body text-center">
-                        <div class="mb-3">
-                            <i class="fas fa-check-circle text-info" style="font-size: 2.5rem;"></i>
-                        </div>
-                        <h3 class="fw-bold text-info mb-1" id="livrosDisponiveis">0</h3>
-                        <p class="text-muted mb-0">Disponíveis</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recent Books and Quick Actions -->
-        <div class="row g-4">
-            <!-- Recent Books -->
-            <div class="col-lg-8">
-                <div class="card border-0 h-100">
-                    <div class="card-header bg-white border-0 pb-0">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="fw-bold mb-0">
-                                <i class="fas fa-clock me-2 text-primary"></i>
-                                Livros Recentes
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-clock me-2 text-primary"></i>Livros Recentes
                             </h5>
-                            <a href="meus-livros.php" class="btn btn-sm btn-outline-primary">
+                            <a href="index.php?action=my_books" class="btn btn-outline-primary btn-sm">
                                 Ver Todos
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="livrosRecentes">
-                            <!-- Livros serão carregados via JavaScript -->
-                        </div>
+                        <?php if (!empty($recent_books)): ?>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Título</th>
+                                            <th>Autor</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($recent_books as $book): ?>
+                                            <tr>
+                                                <td class="fw-bold"><?= htmlspecialchars($book['title']) ?></td>
+                                                <td><?= htmlspecialchars($book['author']) ?></td>
+                                                <td>
+                                                    <?php
+                                                    $statusClass = [
+                                                        'Lido' => 'success',
+                                                        'Lendo' => 'warning',
+                                                        'Desejo Ler' => 'info',
+                                                        'Abandonado' => 'secondary'
+                                                    ];
+                                                    $class = $statusClass[$book['status']] ?? 'secondary';
+                                                    ?>
+                                                    <span class="badge bg-<?= $class ?>"><?= htmlspecialchars($book['status']) ?></span>
+                                                </td>
+                                                <td>
+                                                    <a href="index.php?action=book_details&id=<?= $book['id'] ?>" class="btn btn-sm btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php else: ?>
+                            <div class="text-center py-4">
+                                <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                                <p class="text-muted">Nenhum livro cadastrado ainda.</p>
+                                <a href="index.php?action=add_book" class="btn btn-primary">
+                                    <i class="fas fa-plus me-2"></i>Adicionar Primeiro Livro
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Actions -->
-            <div class="col-lg-4">
-                <div class="card border-0 h-100">
-                    <div class="card-header bg-white border-0 pb-0">
-                        <h5 class="fw-bold mb-0">
-                            <i class="fas fa-bolt me-2 text-primary"></i>
-                            Ações Rápidas
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-tags me-2 text-primary"></i>Gêneros Favoritos
                         </h5>
                     </div>
                     <div class="card-body">
-                        <div class="d-grid gap-3">
-                            <a href="cadastro-livro.php" class="btn btn-primary">
-                                <i class="fas fa-plus me-2"></i>
-                                Adicionar Novo Livro
-                            </a>
-                            <a href="meus-livros.php" class="btn btn-outline-primary">
-                                <i class="fas fa-search me-2"></i>
-                                Buscar Livros
-                            </a>
-
-                        </div>
+                        <?php if (!empty($books_by_genre)): ?>
+                            <?php foreach (array_slice($books_by_genre, 0, 5) as $genre): ?>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span><?= htmlspecialchars($genre['genre']) ?></span>
+                                    <span class="badge bg-primary"><?= $genre['count'] ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="text-muted text-center">Nenhum gênero cadastrado ainda.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
-    <!-- Footer -->
-<footer class="bg-dark text-light py-5 mt-5">
+    <footer class="bg-dark text-light py-5 mt-5">
     <div class="container">
         <div class="row g-4">
             <!-- Coluna 1: Sobre -->
@@ -315,115 +351,6 @@
     </div>
 </footer>
 
-    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="../js/main.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar autenticação
-            BookManager.redirecionarSeNaoAutenticado();
-            
-            // Carregar dados do usuário
-            const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (usuario) {
-                document.getElementById('nomeUsuario').textContent = usuario.nome;
-                document.getElementById('nomeUsuarioBemVindo').textContent = usuario.nome;
-            }
-            
-            // Carregar estatísticas
-            carregarEstatisticas();
-            
-            // Carregar livros recentes
-            carregarLivrosRecentes();
-        });
-
-        function carregarEstatisticas() {
-            const livros = BookManager.livrosSimulados;
-            
-            document.getElementById('totalLivros').textContent = livros.length;
-            document.getElementById('livrosEmprestados').textContent = livros.filter(l => l.status === 'Emprestado').length;
-            document.getElementById('livrosDisponiveis').textContent = livros.filter(l => l.status === 'Disponível').length;
-        }
-
-        function carregarLivrosRecentes() {
-            const livros = BookManager.livrosSimulados.slice(0, 3); // Últimos 3 livros
-            const container = document.getElementById('livrosRecentes');
-            
-            if (livros.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-4">
-                        <i class="fas fa-book text-muted" style="font-size: 3rem;"></i>
-                        <p class="text-muted mt-3">Nenhum livro cadastrado ainda.</p>
-                        <a href="cadastro-livro.php" class="btn btn-primary">
-                            <i class="fas fa-plus me-2"></i>Adicionar Primeiro Livro
-                        </a>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = livros.map(livro => `
-                <div class="d-flex align-items-center mb-3 p-3 bg-light rounded hover-shadow">
-                    <div class="me-3">
-                        <i class="fas fa-book text-primary" style="font-size: 2rem;"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <h6 class="fw-bold mb-1">${livro.titulo}</h6>
-                        <p class="text-muted mb-1">${livro.autor}</p>
-                        <span class="badge badge-${livro.status.toLowerCase().replace('í', 'i').replace('ã', 'a')}">${livro.status}</span>
-                    </div>
-                    <div>
-                        <a href="detalhes-livro.php?id=${livro.id}" class="btn btn-sm btn-outline-primary">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function gerarRelatorio() {
-            alert('Funcionalidade de relatório será implementada em breve!');
-        }
-
-        function exportarDados() {
-            alert('Funcionalidade de exportação será implementada em breve!');
-        }
-    </script>
-
-    <style>
-        .progress-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: conic-gradient(var(--primary-color) 75%, #e9ecef 75%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .progress-circle-inner {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .progress-percentage {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .bg-gradient-primary {
-            background: var(--gradient-primary) !important;
-        }
-    </style>
 </body>
 </html>
-
