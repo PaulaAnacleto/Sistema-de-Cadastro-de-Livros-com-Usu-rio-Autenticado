@@ -3,7 +3,7 @@
         'name' => 'paula/bookmanager',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '37e4430c4facfdb08dd48235a849be8f2ecf235b',
+        'reference' => 'd4bce859605bd39bf3a02b914b231950c999e769',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'paula/bookmanager' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '37e4430c4facfdb08dd48235a849be8f2ecf235b',
+            'reference' => 'd4bce859605bd39bf3a02b914b231950c999e769',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
