@@ -22,7 +22,7 @@ class Book
 
     public function __construct()
     {
-        // Inicializa conexão com o banco de dados
+
         $this->db = Connection::getInstance();
     }
 
