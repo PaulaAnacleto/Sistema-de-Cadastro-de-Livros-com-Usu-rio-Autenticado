@@ -249,4 +249,3 @@ class BookController
         return null;
     }
 }
-
