@@ -22,6 +22,7 @@ class Book
 
     public function __construct()
     {
+        // Inicializa conexão com o banco de dados
         $this->db = Connection::getInstance();
     }
 
@@ -47,7 +48,7 @@ class Book
     {
         $bookData['created_at'] = date('Y-m-d H:i:s');
         
-        // Validate status
+        // Valida status
         if (!in_array($bookData['status'], self::VALID_STATUSES)) {
             $bookData['status'] = self::STATUS_WANT_TO_READ;
         }
@@ -67,12 +68,12 @@ class Book
 
     public function updateBook(int $bookId, int $userId, array $data): bool
     {
-        // Validate status if provided
+        // Valida status se informado
         if (isset($data['status']) && !in_array($data['status'], self::VALID_STATUSES)) {
             return false;
         }
 
-        // First check if book belongs to user
+        // Verifica se o livro pertence ao usuário
         if (!$this->findByUserAndId($userId, $bookId)) {
             return false;
         }
@@ -96,7 +97,7 @@ class Book
 
     public function deleteBook(int $bookId, int $userId): bool
     {
-        // First check if book belongs to user
+        // Verifica se o livro pertence ao usuário
         if (!$this->findByUserAndId($userId, $bookId)) {
             return false;
         }

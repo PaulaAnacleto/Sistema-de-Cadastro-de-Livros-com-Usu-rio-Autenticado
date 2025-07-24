@@ -10,11 +10,13 @@ class User
 
     public function __construct()
     {
+        // Inicializa a conexão com o banco de dados
         $this->db = Connection::getInstance();
     }
 
     public function findByEmail(string $email): ?array
     {
+        // Busca um usuário pelo e-mail
         $stmt = $this->db->prepare("SELECT * FROM user WHERE email = :email");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -24,6 +26,7 @@ class User
 
     public function createUser(array $userData): bool
     {
+        // Cria um novo usuário no banco de dados
         $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
         $userData['created_at'] = date('Y-m-d H:i:s');
         
@@ -42,10 +45,11 @@ class User
 
     public function validateLogin(string $email, string $password): ?array
     {
+        // Valida o login do usuário
         $user = $this->findByEmail($email);
         
         if ($user && password_verify($password, $user['password'])) {
-            // Remove password from returned data for security
+            // Remove a senha dos dados retornados por segurança
             unset($user['password']);
             return $user;
         }
@@ -55,12 +59,14 @@ class User
 
     public function emailExists(string $email): bool
     {
+        // Verifica se o e-mail já está cadastrado
         return $this->findByEmail($email) !== null;
     }
 
     public function updateProfile(int $userId, array $data): bool
     {
-        // Remove password from data if it's empty
+        // Atualiza o perfil do usuário
+        // Remove a senha dos dados se estiver vazia
         if (isset($data['password']) && empty($data['password'])) {
             unset($data['password']);
         } else if (isset($data['password'])) {
@@ -86,6 +92,7 @@ class User
 
     public function getUserStats(int $userId): array
     {
+        // Retorna estatísticas dos livros do usuário
         $stmt = $this->db->prepare("
             SELECT 
                 COUNT(*) as total_books,

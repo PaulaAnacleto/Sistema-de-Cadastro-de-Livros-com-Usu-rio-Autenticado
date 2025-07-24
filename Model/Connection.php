@@ -7,18 +7,19 @@ use PDOException;
 
 class Connection
 {
+    // Instância única de PDO
     private static ?PDO $instance = null;
 
     private function __construct()
     {
-        // Private constructor to prevent direct instantiation
     }
 
+    // Retorna a instância única de PDO
     public static function getInstance(): PDO
     {
         if (self::$instance === null) {
             require_once __DIR__ . '/../Config/configuration.php';
-            
+
             $dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=utf8mb4';
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -27,12 +28,13 @@ class Connection
             ];
 
             try {
+                // Cria nova instância PDO
                 self::$instance = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
             } catch (PDOException $e) {
+                // Lança exceção em caso de erro na conexão
                 throw new PDOException($e->getMessage(), (int)$e->getCode());
             }
         }
         return self::$instance;
     }
 }
-
