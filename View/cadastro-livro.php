@@ -63,7 +63,8 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <?php if (isset($error) && $error): ?>
+                        <!-- Alertas de sucesso e de erro -->
+                    <?php if (isset($error) && $error): ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <i class="fas fa-exclamation-triangle me-2"></i>
                                 <?= htmlspecialchars($error) ?>
@@ -93,6 +94,9 @@
                                     <label for="author" class="form-label">
                                         <i class="fas fa-user-edit me-2"></i>Autor *
                                     </label>
+                                    <!-- Preenchimento dos campos do formulário com valores enviados anteriormente:
+                                    O valor preenchido será enviado junto ao formulário para cadastro.
+                                    -->
                                     <input type="text" class="form-control" id="author" name="author" required 
                                            placeholder="Digite o nome do autor" value="<?= htmlspecialchars($_POST['author'] ?? '') ?>">
                                 </div>
@@ -112,12 +116,13 @@
                                         <i class="fas fa-bookmark me-2"></i>Status
                                     </label>
                                     <select class="form-select" id="status" name="status">
-                                        <?php foreach ($valid_statuses as $status_option): ?>
-                                            <option value="<?= htmlspecialchars($status_option) ?>" 
-                                                    <?= (($_POST['status'] ?? 'Desejo Ler') === $status_option) ? 'selected' : '' ?>>
-                                                <?= htmlspecialchars($status_option) ?>
-                                            </option>
-                                        <?php endforeach; ?>
+                             <!-- <?php foreach ($valid_statuses as $status_option): ?> // Percorre cada status válido para criar uma opção no select
+                                  <?= htmlspecialchars($status_option) ?>" // Define o valor da opção, escapando caracteres especiais
+                                    <?= (($_POST['status'] ?? 'Desejo Ler') === $status_option) ? 'selected' : '' ?>> // Marca como selecionado se for igual ao valor enviado no formulário ou ao padrão
+                                    <?= htmlspecialchars($status_option) ?> // Exibe o texto da opção, escapando caracteres especiais
+                                -->
+                                <?php endforeach; ?>
+
                                     </select>
                                 </div>
                             </div>

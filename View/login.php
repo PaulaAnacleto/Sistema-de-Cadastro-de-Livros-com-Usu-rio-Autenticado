@@ -58,15 +58,21 @@
                     </div>
 
                     <!-- Alertas -->
-                    <?php if (isset($error) && $error): ?>
+                    <?php 
+                    // Se existir uma mensagem de erro, exibe o alerta vermelho
+                    if (isset($error) && $error): ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <!-- Ícone -->
                             <i class="fas fa-exclamation-triangle me-2"></i>
+                            <!-- Exibe a mensagem de erro, escapando caracteres especiais -->
                             <?= htmlspecialchars($error) ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     <?php endif; ?>
 
-                    <?php if (isset($success) && $success): ?>
+                    <?php 
+                    // Se existir uma mensagem de sucesso, exibe o alerta verde
+                    if (isset($success) && $success): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="fas fa-check-circle me-2"></i>
                             <?= htmlspecialchars($success) ?>
@@ -80,6 +86,9 @@
                             <label for="email" class="form-label">
                                 <i class="fas fa-envelope me-2"></i>E-mail
                             </label>
+                            <!-- // Exibe o campo de e-mail do formulário.
+                            // O valor do campo é preenchido com o que o usuário digitou anteriormente (caso exista),
+                            // htmlspecialchars converte caracteres HTML potencialmente perigosos em inofensivos, -->
                             <input type="email" class="form-control" id="email" name="email" required 
                                    placeholder="Digite seu e-mail" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                         </div>
