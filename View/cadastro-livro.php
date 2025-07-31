@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Livro - BookManager</title>
     
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ícones do Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS personalizado -->
     <link rel="stylesheet" href="templates/assets/css/style.css">
 </head>
 <body class="bg-light">
+    <!-- Navegação -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.php?action=dashboard">
@@ -53,6 +58,7 @@
         </div>
     </nav>
 
+    <!-- Conteúdo principal -->
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -63,8 +69,8 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <!-- Alertas de sucesso e de erro -->
-                    <?php if (isset($error) && $error): ?>
+                        <!-- Alertas -->
+                        <?php if (isset($error) && $error): ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <i class="fas fa-exclamation-triangle me-2"></i>
                                 <?= htmlspecialchars($error) ?>
@@ -80,6 +86,7 @@
                             </div>
                         <?php endif; ?>
 
+                        <!-- Formulário -->
                         <form method="POST" action="index.php?action=do_add_book" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -94,9 +101,6 @@
                                     <label for="author" class="form-label">
                                         <i class="fas fa-user-edit me-2"></i>Autor *
                                     </label>
-                                    <!-- Preenchimento dos campos do formulário com valores enviados anteriormente:
-                                    O valor preenchido será enviado junto ao formulário para cadastro.
-                                    -->
                                     <input type="text" class="form-control" id="author" name="author" required 
                                            placeholder="Digite o nome do autor" value="<?= htmlspecialchars($_POST['author'] ?? '') ?>">
                                 </div>
@@ -116,19 +120,13 @@
                                         <i class="fas fa-bookmark me-2"></i>Status
                                     </label>
                                     <select class="form-select" id="status" name="status">
-  <option value="" disabled <?= empty($_POST['status']) ? 'selected' : '' ?>>
-    selecione o status 
-  </option>
-  <?php foreach ($valid_statuses as $status_option): ?>
-    <option
-      value="<?= htmlspecialchars($status_option, ENT_QUOTES) ?>"
-      <?= (($_POST['status'] ?? '') === $status_option) ? 'selected' : '' ?>
-    >
-      <?= htmlspecialchars($status_option) ?>
-    </option>
-  <?php endforeach; ?>
-</select>
-
+                                        <?php foreach ($valid_statuses as $status_option): ?>
+                                            <option value="<?= htmlspecialchars($status_option) ?>" 
+                                                    <?= (($_POST['status'] ?? 'Desejo Ler') === $status_option) ? 'selected' : '' ?>>
+                                                <?= htmlspecialchars($status_option) ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
 
@@ -182,7 +180,7 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-light py-5 mt-5">
+        <footer class="bg-dark text-light py-5 mt-5">
     <div class="container">
         <div class="row g-4">
             <!-- Coluna 1: Sobre -->
@@ -318,6 +316,8 @@
     </div>
 </footer>
 
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
