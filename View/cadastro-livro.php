@@ -116,14 +116,19 @@
                                         <i class="fas fa-bookmark me-2"></i>Status
                                     </label>
                                     <select class="form-select" id="status" name="status">
-                             <!-- <?php foreach ($valid_statuses as $status_option): ?> // Percorre cada status válido para criar uma opção no select
-                                  <?= htmlspecialchars($status_option) ?>" // Define o valor da opção, escapando caracteres especiais
-                                    <?= (($_POST['status'] ?? 'Desejo Ler') === $status_option) ? 'selected' : '' ?>> // Marca como selecionado se for igual ao valor enviado no formulário ou ao padrão
-                                    <?= htmlspecialchars($status_option) ?> // Exibe o texto da opção, escapando caracteres especiais
-                                -->
-                                <?php endforeach; ?>
+  <option value="" disabled <?= empty($_POST['status']) ? 'selected' : '' ?>>
+    selecione o status 
+  </option>
+  <?php foreach ($valid_statuses as $status_option): ?>
+    <option
+      value="<?= htmlspecialchars($status_option, ENT_QUOTES) ?>"
+      <?= (($_POST['status'] ?? '') === $status_option) ? 'selected' : '' ?>
+    >
+      <?= htmlspecialchars($status_option) ?>
+    </option>
+  <?php endforeach; ?>
+</select>
 
-                                    </select>
                                 </div>
                             </div>
 
