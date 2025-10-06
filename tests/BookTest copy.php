@@ -50,24 +50,6 @@ class BookTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se status inválido é tratado na criação
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_handle_invalid_status_when_creating_book() {
-        $bookData = [
-            'title' => 'Clean Code',
-            'author' => 'Robert C. Martin',
-            'genre' => 'Tecnologia',
-            'status' => 'Status Inválido',
-            'id_user' => 1
-        ];
-
-        // Simula que o método isValidStatus retorna false
-        $bookModelReal = new Book();
-        $isValid = $bookModelReal->isValidStatus('Status Inválido');
-        
-        $this->assertFalse($isValid);
-    }
-
     // Teste: Verificar se é possível buscar todos os livros de um usuário
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_find_books_by_user() {
@@ -330,27 +312,6 @@ class BookTest extends TestCase {
         
         $this->assertIsArray($result);
         $this->assertCount(5, $result);
-    }
-
-    // Teste: Verificar validação de status válido
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_validate_valid_status() {
-        $bookModelReal = new Book();
-        
-        $this->assertTrue($bookModelReal->isValidStatus(Book::STATUS_READ));
-        $this->assertTrue($bookModelReal->isValidStatus(Book::STATUS_READING));
-        $this->assertTrue($bookModelReal->isValidStatus(Book::STATUS_WANT_TO_READ));
-        $this->assertTrue($bookModelReal->isValidStatus(Book::STATUS_ABANDONED));
-    }
-
-    // Teste: Verificar validação de status inválido
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_invalidate_invalid_status() {
-        $bookModelReal = new Book();
-        
-        $this->assertFalse($bookModelReal->isValidStatus('Status Qualquer'));
-        $this->assertFalse($bookModelReal->isValidStatus(''));
-        $this->assertFalse($bookModelReal->isValidStatus('Lido Completamente'));
     }
 
     // Teste: Verificar se campos obrigatórios são validados
