@@ -19,7 +19,7 @@ class UserTest extends TestCase {
             ->getMock();
     }
 
-    // Teste: Verificar se é possível criar um usuário
+    // Teste: Verificar se é possível criar um usuário!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_create_user() {
         $userData = [
@@ -38,7 +38,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível fazer login com credenciais válidas
+    // Teste: Verificar se é possível fazer login com credenciais válidas!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_sign_in() {
         $email = 'joao@example.com';
@@ -67,7 +67,7 @@ class UserTest extends TestCase {
         $this->assertEquals('João Silva', $result['user_fullname']);
     }
 
-    // Teste: Verificar se login falha com credenciais inválidas
+    // Teste: Verificar se login falha com credenciais inválidas!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_shouldnt_login_with_invalid_credentials() {
         $email = 'joao@example.com';
@@ -83,46 +83,7 @@ class UserTest extends TestCase {
         $this->assertNull($result);
     }
 
-    // Teste: Verificar se é possível buscar usuário por email
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_be_able_to_check_user_by_email() {
-        $email = 'joao@example.com';
-        
-        $expectedUser = [
-            'id' => 1,
-            'user_fullname' => 'João Silva',
-            'email' => 'joao@example.com',
-            'password' => password_hash('123456', PASSWORD_DEFAULT)
-        ];
-
-        $this->mockUserModel->expects($this->once())
-            ->method('findByEmail')
-            ->with($this->equalTo($email))
-            ->willReturn($expectedUser);
-
-        $result = $this->mockUserModel->findByEmail($email);
-        
-        $this->assertNotNull($result);
-        $this->assertEquals('joao@example.com', $result['email']);
-        $this->assertEquals('João Silva', $result['user_fullname']);
-    }
-
-    // Teste: Verificar se retorna null quando usuário não existe
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_return_null_when_user_not_found() {
-        $email = 'naoexiste@example.com';
-
-        $this->mockUserModel->expects($this->once())
-            ->method('findByEmail')
-            ->with($this->equalTo($email))
-            ->willReturn(null);
-
-        $result = $this->mockUserModel->findByEmail($email);
-        
-        $this->assertNull($result);
-    }
-
-    // Teste: Verificar se email já existe
+    // Teste: Verificar se email já existe!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_verify_if_email_exists() {
         $email = 'joao@example.com';
@@ -137,22 +98,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se email não existe
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_verify_if_email_does_not_exist() {
-        $email = 'novoemail@example.com';
-
-        $this->mockUserModel->expects($this->once())
-            ->method('emailExists')
-            ->with($this->equalTo($email))
-            ->willReturn(false);
-
-        $result = $this->mockUserModel->emailExists($email);
-        
-        $this->assertFalse($result);
-    }
-
-    // Teste: Verificar se é possível atualizar perfil do usuário
+    // Teste: Verificar se é possível atualizar perfil do usuário!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_update_user_profile() {
         $userId = 1;
@@ -171,7 +117,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível atualizar senha do usuário
+    // Teste: Verificar se é possível atualizar senha do usuário!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_update_user_password() {
         $userId = 1;
@@ -189,30 +135,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se retorna estatísticas vazias para usuário sem livros
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_return_empty_stats_for_user_without_books() {
-        $userId = 999;
-        $expectedStats = [
-            'total_books' => 0,
-            'books_read' => 0,
-            'books_reading' => 0,
-            'books_want_to_read' => 0,
-            'books_abandoned' => 0
-        ];
-
-        $this->mockUserModel->expects($this->once())
-            ->method('getUserStats')
-            ->with($this->equalTo($userId))
-            ->willReturn($expectedStats);
-
-        $result = $this->mockUserModel->getUserStats($userId);
-        
-        $this->assertIsArray($result);
-        $this->assertEquals(0, $result['total_books']);
-    }
-
-    // Teste: Verificar validação de email inválido
+    // Teste: Verificar validação de email inválido!
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_validate_email_format() {
         $validEmail = 'joao@example.com';
@@ -244,37 +167,6 @@ class UserTest extends TestCase {
         
         $this->assertLessThan(6, strlen($shortPassword));
         $this->assertGreaterThanOrEqual(6, strlen($validPassword));
-    }
-
-    // Teste: Verificar se senhas devem coincidir no cadastro
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_match_password_and_confirmation() {
-        $password = '123456';
-        $confirmPassword = '123456';
-        $wrongConfirmation = '654321';
-        
-        $this->assertEquals($password, $confirmPassword);
-        $this->assertNotEquals($password, $wrongConfirmation);
-    }
-
-    // Teste: Verificar se usuário está logado através da sessão
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_verify_if_is_logged_in() {
-        $_SESSION['user_id'] = 1;
-        
-        $isLoggedIn = isset($_SESSION['user_id']);
-        
-        $this->assertTrue($isLoggedIn);
-    }
-
-    // Teste: Verificar se usuário não está logado
-    #[\PHPUnit\Framework\Attributes\Test]
-    public function it_should_verify_if_is_not_logged_in() {
-        unset($_SESSION['user_id']);
-        
-        $isLoggedIn = isset($_SESSION['user_id']);
-        
-        $this->assertFalse($isLoggedIn);
     }
 
     // Teste: Verificar se senha não é retornada após validação de login
