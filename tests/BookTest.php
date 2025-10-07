@@ -26,7 +26,7 @@ class BookTest extends TestCase {
             ->getMock();
     }
 
-    // Teste: Verificar se é possível criar um livro com dados válidos!
+    // Teste: Verificar se é possível criar um livro com dados válidos! PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_create_book_with_valid_data() {
         $bookData = [
@@ -50,7 +50,7 @@ class BookTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível buscar todos os livros de um usuário!
+    // Teste: Verificar se é possível buscar todos os livros de um usuário! HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_find_books_by_user() {
         $userId = 1;
@@ -85,7 +85,7 @@ class BookTest extends TestCase {
         $this->assertEquals('Clean Code', $result[0]['title']);
     }
 
-    // Teste: Verificar se é possível buscar um livro específico por ID e usuário!
+    // Teste: Verificar se é possível buscar um livro específico por ID e usuário! CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_find_book_by_user_and_id() {
         $userId = 1;
@@ -111,7 +111,7 @@ class BookTest extends TestCase {
         $this->assertEquals(1, $result['id_user']);
     }
 
-    // Teste: Verificar se retorna null quando livro não é encontrado!
+    // Teste: Verificar se retorna null quando livro não é encontrado! PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_return_null_when_book_not_found() {
         $userId = 1;
@@ -127,7 +127,7 @@ class BookTest extends TestCase {
         $this->assertNull($result);
     }
 
-    // Teste: Verificar se é possível atualizar um livro!
+    // Teste: Verificar se é possível atualizar um livro! HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_update_book() {
         $bookId = 1;
@@ -147,7 +147,7 @@ class BookTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se atualização falha com status inválido!
+    // Teste: Verificar se atualização falha com status inválido! CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_fail_to_update_book_with_invalid_status() {
         $bookId = 1;
@@ -167,7 +167,7 @@ class BookTest extends TestCase {
         $this->assertFalse($result);
     }
 
-    // Teste: Verificar se é possível excluir um livro!
+    // Teste: Verificar se é possível excluir um livro! PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_delete_book() {
         $bookId = 1;
@@ -183,7 +183,7 @@ class BookTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se exclusão falha quando livro não pertence ao usuário!
+    // Teste: Verificar se exclusão falha quando livro não pertence ao usuário! HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_fail_to_delete_book_when_not_owned_by_user() {
         $bookId = 1;
@@ -199,7 +199,7 @@ class BookTest extends TestCase {
         $this->assertFalse($result);
     }
 
-    // Teste: Verificar se é possível buscar livros por status
+    // Teste: Verificar se é possível buscar livros por status CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_find_books_by_status() {
         $userId = 1;
@@ -225,7 +225,7 @@ class BookTest extends TestCase {
         $this->assertEquals(Book::STATUS_READ, $result[0]['status']);
     }
 
-    // Teste: Verificar se é possível pesquisar livros por termo!
+    // Teste: Verificar se é possível pesquisar livros por termo! PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_search_books() {
         $userId = 1;
@@ -251,7 +251,7 @@ class BookTest extends TestCase {
         $this->assertStringContainsString('Clean', $result[0]['title']);
     }
 
-    // Teste: Verificar se é possível obter livros por gênero
+    // Teste: Verificar se é possível obter livros por gênero HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_get_books_by_genre() {
         $userId = 1;
@@ -273,7 +273,7 @@ class BookTest extends TestCase {
         $this->assertEquals(5, $result[0]['count']);
     }
 
-    // Teste: Verificar se campos obrigatórios são validados!
+    // Teste: Verificar se campos obrigatórios são validados! CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_require_mandatory_fields() {
         $bookData = [

@@ -19,7 +19,7 @@ class UserTest extends TestCase {
             ->getMock();
     }
 
-    // Teste: Verificar se é possível criar um usuário!
+    // Teste: Verificar se é possível criar um usuário! PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_create_user() {
         $userData = [
@@ -38,7 +38,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível fazer login com credenciais válidas!
+    // Teste: Verificar se é possível fazer login com credenciais válidas! HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_sign_in() {
         $email = 'joao@example.com';
@@ -67,7 +67,7 @@ class UserTest extends TestCase {
         $this->assertEquals('João Silva', $result['user_fullname']);
     }
 
-    // Teste: Verificar se login falha com credenciais inválidas!
+    // Teste: Verificar se login falha com credenciais inválidas! CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_shouldnt_login_with_invalid_credentials() {
         $email = 'joao@example.com';
@@ -83,7 +83,7 @@ class UserTest extends TestCase {
         $this->assertNull($result);
     }
 
-    // Teste: Verificar se email já existe!
+    // Teste: Verificar se email já existe! PAULA 
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_verify_if_email_exists() {
         $email = 'joao@example.com';
@@ -98,7 +98,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível atualizar perfil do usuário!
+    // Teste: Verificar se é possível atualizar perfil do usuário! HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_update_user_profile() {
         $userId = 1;
@@ -117,7 +117,7 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar se é possível atualizar senha do usuário!
+    // Teste: Verificar se é possível atualizar senha do usuário! CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_be_able_to_update_user_password() {
         $userId = 1;
@@ -135,8 +135,8 @@ class UserTest extends TestCase {
         $this->assertTrue($result);
     }
 
-    // Teste: Verificar validação de email inválido!
-    #[\PHPUnit\Framework\Attributes\Test]
+    // Teste: Verificar validação de email inválido! PAULA
+    #[\PHPUnit\Framework\Attributes\Test] 
     public function it_should_validate_email_format() {
         $validEmail = 'joao@example.com';
         $invalidEmail = 'emailinvalido';
@@ -145,7 +145,7 @@ class UserTest extends TestCase {
         $this->assertFalse(filter_var($invalidEmail, FILTER_VALIDATE_EMAIL) !== false);
     }
 
-    // Teste: Verificar se campos obrigatórios são validados no cadastro
+    // Teste: Verificar se campos obrigatórios são validados no cadastro HELBER
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_require_mandatory_fields_on_registration() {
         $incompleteData = [
@@ -159,7 +159,7 @@ class UserTest extends TestCase {
         $this->assertEmpty($incompleteData['password']);
     }
 
-    // Teste: Verificar se senha deve ter no mínimo 6 caracteres
+    // Teste: Verificar se senha deve ter no mínimo 6 caracteres CORDEIRO
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_require_minimum_password_length() {
         $shortPassword = '12345';
@@ -169,7 +169,7 @@ class UserTest extends TestCase {
         $this->assertGreaterThanOrEqual(6, strlen($validPassword));
     }
 
-    // Teste: Verificar se senha não é retornada após validação de login
+    // Teste: Verificar se senha não é retornada após validação de login PAULA
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_should_not_return_password_after_login_validation() {
         $email = 'joao@example.com';
